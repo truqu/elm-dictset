@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "summary": "Sets for any type",
+  "repository": "https://github.com/truqu/elm-dictset.git",
+  "license": "MIT",
+  "source-directories": [
+    "src"
+  ],
+  "exposed-modules": [
+    "DictSet"
+  ],
+  "dependencies": {
+    "elm-lang/core": "3.0.0 <= v < 4.0.0"
+  },
+  "elm-version": "0.16 <= v < 0.17"
+}
