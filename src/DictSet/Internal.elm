@@ -1,4 +1,4 @@
-module DictSet.Internal (DictSet(..), compare, dict) where
+module DictSet.Internal exposing (DictSet(..), compare, dict)
 
 import Dict exposing (Dict)
 

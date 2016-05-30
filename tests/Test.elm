@@ -1,28 +1,19 @@
-module Main (..) where
+module Main exposing (..)
 
-import Check exposing (..)
+import Check exposing (Claim, quickCheck, claim, that, is, for, true, suite)
 import Check.Producer exposing (..)
 import Check.Test exposing (evidenceToTest)
-import Console exposing (IO)
 import DictSet exposing (..)
-import ElmTest exposing (consoleRunner, Test)
-import Signal exposing (Signal)
-import Task
+import ElmTest exposing (..)
 
 
-console : IO ()
-console =
-  consoleRunner <| evidenceToTest <| quickCheck all
-
-
-port runner : Signal (Task.Task x ())
-port runner =
-  Console.run console
-
+main : Program Never
+main =
+  runSuite <| evidenceToTest <| quickCheck all
 
 all : Claim
 all =
-  suite
+  Check.suite
     "All"
     [ build
     , query
@@ -33,7 +24,7 @@ all =
 
 build : Claim
 build =
-  suite
+  Check.suite
     "Build"
     [ claim
         "Singleton is equal to insert in empty"
@@ -50,7 +41,7 @@ build =
 
 query : Claim
 query =
-  suite
+  Check.suite
     "Query"
     [ claim
         "An element is a member after insertion"
@@ -68,7 +59,7 @@ combine =
     fromAppendedLists ( l1, l2 ) =
       toList <| fromList identity (l1 ++ l2)
   in
-    suite
+    Check.suite
       "Combine"
       [ claim
           "Union of two sets is equal to the set of appended lists"
@@ -99,7 +90,7 @@ transform =
     isEven x =
       x % 2 == 0
   in
-    suite
+    Check.suite
       "Transform"
       [ claim
           "Map of set of list is equal to set of map of list"

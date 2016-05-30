@@ -1,4 +1,4 @@
-module DictSet (DictSet, empty, singleton, insert, remove, isEmpty, member, size, union, intersect, diff, toList, fromList, map, foldl, foldr, filter, partition) where
+module DictSet exposing (DictSet, empty, singleton, insert, remove, isEmpty, member, size, union, intersect, diff, toList, fromList, map, foldl, foldr, filter, partition)
 
 {-| A set of unique values. The values can be any type, and the comparison is
 done using a function `compare : value -> comparable`.
