@@ -25,3 +25,13 @@ userSet : DictSet Int User
 userSet =
   DictSet.fromList .id allUsers
 ```
+
+
+## Tests
+
+To run the tests, do:
+
+```
+npm install
+npm test
+```

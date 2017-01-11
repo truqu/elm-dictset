@@ -1,0 +1,17 @@
+{
+  "name": "elm-dictset",
+  "version": "1.0.4",
+  "description": "Elm library for sets of any type",
+  "dependencies": {
+    "elm-test": "^0.18.2"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "scripts": {
+    "test": "elm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/truqu/elm-dictset.git"
+  }
+}
