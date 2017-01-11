@@ -1,6 +1,6 @@
 {
   "name": "elm-dictset",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Elm library for sets of any type",
   "dependencies": {
     "elm-test": "^0.18.2"
