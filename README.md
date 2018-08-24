@@ -1,4 +1,6 @@
 # Elm-DictSet
+[![Build Status](https://travis-ci.org/truqu/elm-dictset.svg?branch=master)](https://travis-ci.org/truqu/elm-dictset)
+
 
 An Elm library for creating sets of any type
 
