@@ -3,7 +3,7 @@
     "name": "truqu/elm-dictset",
     "summary": "Set from any type using a Dict under the hood",
     "license": "MIT",
-    "version": "1.0.5",
+    "version": "2.0.0",
     "exposed-modules": [
         "DictSet"
     ],
