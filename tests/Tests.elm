@@ -1,20 +1,10 @@
-module Tests exposing (..)
+module Tests exposing (build, combine, query, transform)
 
 import DictSet exposing (..)
 import Expect
-import Fuzz exposing (list, int, tuple, string)
+import Fuzz exposing (int, list, string, tuple)
 import String
 import Test exposing (..)
-
-
-all : Test
-all =
-    describe "DictSet test suite"
-        [ build
-        , query
-        , combine
-        , transform
-        ]
 
 
 build : Test
@@ -58,51 +48,51 @@ combine =
         fromAppendedLists l1 l2 =
             toList <| fromList identity (l1 ++ l2)
     in
-        describe "Combine"
-            [ fuzz2 (list int)
-                (list int)
-                "Union of two sets is equal to the set of appended lists"
-              <|
-                \l1 l2 ->
-                    Expect.equal
-                        (unionOfLists l1 l2)
-                        (fromAppendedLists l1 l2)
-            , fuzz (list int)
-                "Diff of identical sets is empty"
-              <|
-                \x ->
-                    Expect.equal
-                        (diff (fromList identity x) (fromList identity x))
-                        (empty identity)
-            , fuzz (list int)
-                "Intersection of identical sets is the set itself"
-              <|
-                \x ->
-                    Expect.equal
-                        (intersect (fromList identity x) (fromList identity x))
-                        (fromList identity x)
-            ]
+    describe "Combine"
+        [ fuzz2 (list int)
+            (list int)
+            "Union of two sets is equal to the set of appended lists"
+          <|
+            \l1 l2 ->
+                Expect.equal
+                    (unionOfLists l1 l2)
+                    (fromAppendedLists l1 l2)
+        , fuzz (list int)
+            "Diff of identical sets is empty"
+          <|
+            \x ->
+                Expect.equal
+                    (diff (fromList identity x) (fromList identity x))
+                    (empty identity)
+        , fuzz (list int)
+            "Intersection of identical sets is the set itself"
+          <|
+            \x ->
+                Expect.equal
+                    (intersect (fromList identity x) (fromList identity x))
+                    (fromList identity x)
+        ]
 
 
 transform : Test
 transform =
     let
         isEven x =
-            x % 2 == 0
+            remainderBy 2 x == 0
     in
-        describe "Transform"
-            [ fuzz (list int)
-                "Map of set of list is equal to set of map of list"
-              <|
-                \x ->
-                    Expect.equal
-                        (DictSet.map identity ((*) 2) <| fromList identity x)
-                        (fromList identity <| List.map ((*) 2) x)
-            , fuzz (list int)
-                "Filter of set of list is equal to set of filter of list"
-              <|
-                \x ->
-                    Expect.equal
-                        (DictSet.filter isEven <| fromList identity x)
-                        (fromList identity <| List.filter isEven x)
-            ]
+    describe "Transform"
+        [ fuzz (list int)
+            "Map of set of list is equal to set of map of list"
+          <|
+            \x ->
+                Expect.equal
+                    (DictSet.map identity ((*) 2) <| fromList identity x)
+                    (fromList identity <| List.map ((*) 2) x)
+        , fuzz (list int)
+            "Filter of set of list is equal to set of filter of list"
+          <|
+            \x ->
+                Expect.equal
+                    (DictSet.filter isEven <| fromList identity x)
+                    (fromList identity <| List.filter isEven x)
+        ]
