@@ -3,7 +3,7 @@ module DictSet exposing
     , empty, singleton, insert, remove
     , isEmpty, member, size
     , union, intersect, diff
-    , toList, fromList
+    , toList, fromList, keys, values
     , map, foldl, foldr, filter, partition
     )
 
@@ -35,7 +35,7 @@ Insert, remove, and query operations all take _O(log n)_ time.
 
 # Lists
 
-@docs toList, fromList
+@docs toList, fromList, keys, values
 
 
 # Transform
@@ -137,6 +137,20 @@ fromList compare list =
     List.map (\v -> ( compare v, v )) list
         |> Dict.fromList
         |> DictSet compare
+
+
+{-| Extract the keys from a DictSet
+-}
+keys : DictSet comparable a -> List comparable
+keys (DictSet _ dict) =
+    Dict.keys dict
+
+
+{-| Extract the values from a DictSet
+-}
+values : DictSet comparable a -> List a
+values (DictSet _ dict) =
+    Dict.values dict
 
 
 {-| Map a function onto a set, creating a new set with no duplicates.
